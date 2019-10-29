@@ -148,7 +148,7 @@ sofer.prototype.route = function(path,router){
     }
 }
 
-sofer.prototype.Router = Router
+sofer.Router = Router
 
 module.exports = sofer
 

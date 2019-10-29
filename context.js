@@ -2,6 +2,9 @@
 // var request = require("./request")
 const qs = require("querystring")
 const pathtool = require("path")
+const fs = require("fs")
+
+const filetype = require("./common").filetype
 
 module.exports = function(req,res){
     var context = {
@@ -55,6 +58,23 @@ module.exports = function(req,res){
         },
         set header(val){
             this.req.headers = val
+        },
+
+        /**
+         * function getHeader
+         * @params name 想要获取请求头的属性名
+         */
+        getHeader:function(name){
+            return this.req.headers[name]
+        },
+
+        /**
+         * function setHeader
+         * @params name 要设置的属性名
+         * @params value 属性值
+         */
+        setHeader:function(name,value){
+            this.res.setHeader(name,value)
         },
 
         /**
@@ -196,6 +216,28 @@ module.exports = function(req,res){
         },
         set status(val){
             this.res.statusCode = val
+        },
+
+        /**
+         * function read
+         * @params path  file path
+         */
+        read:function(path){
+            var ext = pathtool.parse(path).ext
+            var type = filetype[ext]
+            this.type = type + ";charset=" + this.charset
+            fs.createReadStream(path).pipe(this.res)
+        },
+
+        /**
+         * charset
+         */
+        charsetEncoding:"utf8",
+        get charset(){
+            return this.charsetEncoding
+        },
+        set charset(val){
+            this.charsetEncoding = val
         }
 
     }
