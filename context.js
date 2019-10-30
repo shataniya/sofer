@@ -238,7 +238,7 @@ module.exports = function(req,res){
         },
         set charset(val){
             this.charsetEncoding = val
-        }
+        },
 
     }
     return context

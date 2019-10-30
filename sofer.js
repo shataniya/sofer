@@ -5,6 +5,11 @@ const Router = require("./router")
 var over = require("./context")
 
 /**
+ * 引入自带的模块
+ */
+const postparse = require("./middlewares/postparse")
+
+/**
  * sofer 一个类似于 koa的框架，目的就是方便构建一个web服务器
  */
 function sofer(){
@@ -149,6 +154,8 @@ sofer.prototype.route = function(path,router){
 }
 
 sofer.Router = Router
+
+sofer.postParse = postparse
 
 module.exports = sofer
 
