@@ -1,8 +1,7 @@
-// 引入request模块
-// var request = require("./request")
 const qs = require("querystring")
 const pathtool = require("path")
 const fs = require("fs")
+const url = require("url")
 
 const filetype = require("./common").filetype
 
@@ -24,20 +23,21 @@ module.exports = function(req,res){
          * return request rootUrl
          */
         get rootUrl(){
-            if(this.url.indexOf("?") === -1){
-                return this.url
-            }
-            return this.url.split("?")[0]
+            return url.parse(this.url,true).pathname
         },
 
         /**
          * return url params
          */
         get rootparams(){
-            if(this.url.indexOf("?") === -1){
-                return ""
-            }
-            return this.url.split("?")[1]
+            return this.search.replace("?","")
+        },
+
+        /**
+         * return url search
+         */
+        get search(){
+            return url.parse(this.url,true).search
         },
 
         /**
@@ -62,7 +62,7 @@ module.exports = function(req,res){
 
         /**
          * function getHeader
-         * @params name 想要获取请求头的属性名
+         * @params name the attribute name of the request header
          */
         getHeader:function(name){
             return this.req.headers[name]
@@ -70,8 +70,8 @@ module.exports = function(req,res){
 
         /**
          * function setHeader
-         * @params name 要设置的属性名
-         * @params value 属性值
+         * @params name The name of the property to set
+         * @params value The attribute value to be set
          */
         setHeader:function(name,value){
             this.res.setHeader(name,value)
@@ -160,8 +160,8 @@ module.exports = function(req,res){
 
         /**
          * function setCookie
-         * @params name  cookie的名称
-         * @params value cookie的值
+         * @params name  cookie-name
+         * @params value cookie-value
          */
         setCookie:function(name,value){
             this.cookie = { [name]:value }
@@ -169,7 +169,7 @@ module.exports = function(req,res){
 
         /**
          * function getCookie
-         * @params name  想要获取的cookie的值
+         * @params name  The value of the cookie
          */
         getCookie:function(name){
             return this.cookie[name]
@@ -185,8 +185,10 @@ module.exports = function(req,res){
             }
             return type
         },
+        // This property remains to be discussed
         set type(val){
-            this.res.setHeader("Content-Type",val)
+            var typeval = val+";charset="+this.charset
+            this.res.setHeader("Content-Type",typeval)
         },
 
         /**
