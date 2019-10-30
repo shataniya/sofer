@@ -1,6 +1,5 @@
 const http = require("http")
 const pathtool = require("path")
-const Router = require("./router")
 // const url = require("url")
 
 var over = require("./context")
@@ -20,7 +19,7 @@ function sofer(){
 
 /**
  * function use
- * @params fn  用于注册中间件
+ * @params fn  用于注册中间件 async/await
  */
 sofer.prototype.use = function(fn){
     this.middlewares.push(fn)
@@ -154,7 +153,17 @@ sofer.prototype.route = function(path,router){
     }
 }
 
+/**
+ * router as a built-in module for sofer
+ */
+const Router = require("./router")
 sofer.Router = Router
+
+/**
+ * sofer-views as a built-in module for sofer
+ */
+const soferViews = require("./middlewares/sofer-views")
+sofer.views = soferViews
 
 sofer.postParse = postparse
 

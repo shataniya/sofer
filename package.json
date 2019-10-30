@@ -1,6 +1,6 @@
 {
   "name": "sofer",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A framework similar to koa, able to quickly develop web servers",
   "main": "sofer.js",
   "scripts": {
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/shataniya/sofer/issues"
   },
-  "homepage": "https://github.com/shataniya/sofer#readme"
+  "homepage": "https://github.com/shataniya/sofer#readme",
+  "dependencies": {
+    "root-path-plugin": "^1.0.0"
+  }
 }

@@ -227,7 +227,7 @@ module.exports = function(req,res){
         read:function(path){
             var ext = pathtool.parse(path).ext
             var type = filetype[ext]
-            this.type = type + ";charset=" + this.charset
+            this.type = type
             fs.createReadStream(path).pipe(this.res)
         },
 
