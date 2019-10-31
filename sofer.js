@@ -5,11 +5,6 @@ const pathtool = require("path")
 var over = require("./context")
 
 /**
- * 引入自带的模块
- */
-const postparse = require("./middlewares/postparse")
-
-/**
  * sofer 一个类似于 koa的框架，目的就是方便构建一个web服务器
  */
 function sofer(){
@@ -23,6 +18,7 @@ function sofer(){
  */
 sofer.prototype.use = function(fn){
     this.middlewares.push(fn)
+    return this
 }
 
 /**
@@ -151,6 +147,7 @@ sofer.prototype.route = function(path,router){
             this.post(path+o,routers[o].callback)
         }
     }
+    return this
 }
 
 /**
@@ -165,7 +162,17 @@ sofer.Router = Router
 const soferViews = require("./middlewares/sofer-views")
 sofer.views = soferViews
 
+/**
+ * PostParse is used to process the data of the post request
+ */
+const postparse = require("./middlewares/postparse")
 sofer.postParse = postparse
+
+/**
+ * Sofer-cors is used to solve cross-domain problems
+ */
+const soferCors = require("./middlewares/sofer-cors")
+sofer.cors = soferCors
 
 module.exports = sofer
 
