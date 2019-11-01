@@ -174,6 +174,12 @@ sofer.postParse = postparse
 const soferCors = require("./middlewares/sofer-cors")
 sofer.cors = soferCors
 
+/**
+ * Sofer-image is used to process image data
+ */
+const soferImage = require("./middlewares/sofer-image")
+sofer.images = soferImage
+
 module.exports = sofer
 
 

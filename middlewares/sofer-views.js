@@ -10,6 +10,7 @@ module.exports = function(viewUrl,options){
     var vurl = viewUrl && path.join(root,viewUrl) || path.join(root,"views") // By default, static resources are stored in the views folder.
     return function(context,next){
         var ext = path.parse(context.url,true).ext
+        context.viewPath = vurl
         if(ext){
             var type = filetype[ext]
             context.type = type

@@ -2,8 +2,16 @@ const qs = require("querystring")
 const pathtool = require("path")
 const fs = require("fs")
 const url = require("url")
+// const path = require("path")
 
-const filetype = require("./common").filetype
+
+const _file = require("./common")._file
+
+/**
+ * Introduce the required modules
+ */
+const MediaModule = require("./context/media")
+const MediaReader = require("./context/mediaReader")
 
 module.exports = function(req,res){
     var context = {
@@ -226,7 +234,7 @@ module.exports = function(req,res){
          */
         read:function(path){
             var ext = pathtool.parse(path).ext
-            var type = filetype[ext]
+            var type = _file[ext]
             this.type = type
             fs.createReadStream(path).pipe(this.res)
         },
@@ -250,6 +258,31 @@ module.exports = function(req,res){
             this.setHeader("Location",path)
             this.body = "The current link has been temporarily redirected to another connection, please go to the link after the redirect to access"
         },
+
+        /**
+         * Handling data from media files and setting where to store media files
+         * @params path     Store the root path of the media file
+         * @params name     The name of the media file
+         * @params callback Callback function triggered after the media file is saved
+         */
+        media:function(){
+            var args = Array.from(arguments)
+            MediaModule.apply(this,args)
+        },
+
+        /**
+         * Parse the media file information and store the media file in the specified location
+         * @params path     Store the root path of the media file
+         * @params name     The name of the media file
+         * @params callback Callback function triggered after the media file is saved
+         * Media file data structure
+         * @params File Information object of media file
+         * @params FileReader  Media file data
+         */
+        mediaReader:function(){
+            var args = Array.from(arguments)
+            MediaReader.apply(this,args)
+        }
 
     }
     return context
