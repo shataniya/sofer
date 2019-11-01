@@ -1,6 +1,6 @@
 {
   "name": "sofer",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "A framework similar to koa, able to quickly develop web servers",
   "main": "sofer.js",
   "scripts": {

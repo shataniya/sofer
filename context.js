@@ -242,6 +242,15 @@ module.exports = function(req,res){
             this.charsetEncoding = val
         },
 
+        /**
+         * Temporary redirect
+         */
+        set redirect(path){
+            this.status = 302
+            this.setHeader("Location",path)
+            this.body = "The current link has been temporarily redirected to another connection, please go to the link after the redirect to access"
+        },
+
     }
     return context
 }
