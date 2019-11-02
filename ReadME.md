@@ -52,6 +52,8 @@ server.get("/index/:name",function(ctx){
 |context.setCookie(name,value)|Set the cookie carried in the response header
 |context.getCookie(name)|Get the specified cookie carried in the request header
 |context.read(file-path)|Returns the specified file, file-path is the path to the file
+|context.media(path,name,cb)|Process data from media files and set where files are stored
+|context.mediaReader(path,name,cb)|Parsing information about media files and setting where files are stored
 ### Use of middleware
 ```javascript
 // Registration middleware

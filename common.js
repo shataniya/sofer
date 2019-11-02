@@ -288,7 +288,7 @@ module.exports._file = {
     '.mid': 'audio/mid',
     '.mp2': 'audio/mp2',
     '.mp3': 'audio/mp3',
-    '.mp4': 'video/mpeg4',
+    '.mp4': 'video/mp4',
     '.mnd': 'audio/x-musicnet-download',
     '.mp1': 'audio/mp1',
     '.mns': 'audio/x-musicnet-stream',
@@ -318,7 +318,9 @@ module.exports._file = {
     '.slk': 'drawing/x-slk',
     '.top': 'drawing/x-top',
     '.class': 'java/*',
-    '.java': 'java/*' }
+    '.java': 'java/*',
+    '.jpg': 'image/jpeg',
+    '.png': 'image/png', }
 
 module.exports._type = {
     'application/x-': '.',
@@ -568,6 +570,7 @@ module.exports._type = {
     'video/avi': '.avi',
     'video/x-ivf': '.IVF',
     'image/png': '.png',
+    'image/jpeg': '.jpg',
     'image/vnd.rn-realpix': '.rp',
     'image/vnd.wap.wbmp': '.wbmp',
     'message/rfc822': '.nws',

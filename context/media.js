@@ -17,6 +17,7 @@ module.exports = function(){
     mpth = args.shift();
     var now = Date.now()
     if(typeof cb !== "function"){
+        mpth = name
         name = cb
         cb = null
     }
