@@ -50,7 +50,7 @@ sofer.prototype.listen = function(){
     var port = args.shift() || 8080
     var callback = args.pop() || _callback
     function _callback(){
-        console.log(`server running at http://localhost:${port}`)
+        console.log("\033[33mserver running at http://localhost:"+port+"\033[39m")
     }
     var hostname = args.pop() || "localhost"
     // // 在这里处理没有注册的路由

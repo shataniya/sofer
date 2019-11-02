@@ -49,7 +49,7 @@ module.exports = function(){
             var mName = name+ext
             fs.writeFile(path.join(mpth,mName),base64,callback)
             function _callback(){
-                console.log(`${mName} has been saved in the ${mpth}`)
+                console.log("\033[34m"+mName+" has been saved in the "+mpth+"\033[39m")
             }
         }
     })
