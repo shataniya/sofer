@@ -204,8 +204,13 @@ module.exports = function(req,res){
          */
         set body(val){
             if(Object.prototype.toString.call(val) === "[object Object]"){
-                this.type = "text/json;charset=utf8"
+                this.type = "text/json"
                 this.res.end(JSON.stringify(val))
+                return 
+            }else if(/[<>]/g.test(val)){
+                this.type = "text/html"
+                this.res.end(val)
+                return 
             }
             this.res.end(val)
         },

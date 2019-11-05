@@ -180,6 +180,12 @@ sofer.cors = soferCors
 const soferImage = require("./middlewares/sofer-image")
 sofer.images = soferImage
 
+/**
+ * Sofer-model is a template engine
+ */
+const soferModel = require("./middlewares/sofer-model")
+sofer.model = soferModel
+
 module.exports = sofer
 
 
