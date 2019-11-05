@@ -38,6 +38,9 @@ module.exports = function(req,res){
          * return url params
          */
         get rootparams(){
+            if(this.search == null){
+                return ""
+            }
             return this.search.replace("?","")
         },
 
